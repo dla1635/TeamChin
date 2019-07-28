@@ -6,6 +6,8 @@ public class Board {
 	private int boardId;
 	private int teamId;
 	private int teamUserId;
+	private String nickname;
+	private String profileImage;
 	private String title;
 	private String contents;
 	private String image;
@@ -28,6 +30,18 @@ public class Board {
 	}
 	public void setTeamUserId(int teamUserId) {
 		this.teamUserId = teamUserId;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 	public String getTitle() {
 		return title;
@@ -55,8 +69,9 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "Board [boardId=" + boardId + ", teamId=" + teamId + ", teamUserId=" + teamUserId + ", title=" + title
-				+ ", contents=" + contents + ", image=" + image + ", createDate=" + createDate + "]";
+		return "Board [boardId=" + boardId + ", teamId=" + teamId + ", teamUserId=" + teamUserId + ", nickname="
+				+ nickname + ", profileImage=" + profileImage + ", title=" + title + ", contents=" + contents
+				+ ", image=" + image + ", createDate=" + createDate + "]";
 	}
 	
 }
