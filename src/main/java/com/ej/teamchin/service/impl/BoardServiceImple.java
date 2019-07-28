@@ -1,5 +1,6 @@
 package com.ej.teamchin.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,34 @@ public class BoardServiceImple implements BoardService{
 	
 	@Override
 	@Transactional
-	public List<Board> getBoardList() {
-		List<Board> list = boardDao.selectBoardList();
+	public List<Board> getBoardList(Integer teamId) {
+		List<Board> list = boardDao.selectBoardList(teamId);
 		return list;
+	}
+
+	@Override
+	@Transactional
+	public Board getBoardItem(Integer boardId) {
+		Board item = boardDao.selectBoardItem(boardId);
+		return item;
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public Board insertBoardItem(Board board) {
+		board.setCreateDate(new Date());
+		int boardId = boardDao.insertBoard(board);
+		board.setBoardId(boardId);
+		return board;
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public Board insertNoticeItem(Board notice) {
+		notice.setCreateDate(new Date());
+		int noticeId = boardDao.insertNotice(notice);
+		notice.setBoardId(noticeId);
+		return notice;
 	}
 	
 }
