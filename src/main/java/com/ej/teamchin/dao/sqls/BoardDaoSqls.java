@@ -22,5 +22,8 @@ public class BoardDaoSqls {
 			"FROM Notice_User, Team_User " + 
 			"WHERE Notice_User.TU_id = Team_User.TU_Id and Notice_User.N_id = :noticeId";
 	
-	//public static final String INSERT_BOARD = "INSERT INTO Board(T_id, TU_id, title, contents, image, create_date) VALUES(?, ?, ?, ?, ?, ?)";
+	public static final String UPDATE_BOARD_ITEM = "UPDATE Board SET title = :title, contents = :contents, image = :image WHERE B_id = :boardId";
+	
+	public static final String UPDATE_NOTICE_ITEM = "UPDATE Notice SET contents = :contents, image = :image WHERE N_id = :noticeId";
+	
 }
