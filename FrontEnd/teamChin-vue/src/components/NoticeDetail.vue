@@ -26,6 +26,17 @@
     </v-layout>
 
     <v-divider></v-divider>
+    <v-layout row>
+      <v-layout justify-start class="read_people">
+        <v-chip pill text-color="#FFFFFF">
+          <v-avatar left color="red" class="white--text headline">은또</v-avatar>
+          은또
+        </v-chip>
+      </v-layout>
+      <v-layout justify-end>
+        <v-btn class="ma-2 confirm_btn" tile color="#9AD9D8">확인</v-btn>
+      </v-layout>
+    </v-layout>
   </v-container>
 </template>
 
@@ -84,4 +95,16 @@ export default {
   margin-bottom: 10px;
 }
 
+.confirm_btn {
+  color: #ffffff;
+}
+
+.read_people {
+    margin-top: 5px;
+    height: 40px;
+}
+
+.headline {
+  font-size: 15px!important;
+}
 </style>
