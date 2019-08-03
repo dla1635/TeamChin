@@ -1,13 +1,15 @@
 package com.ej.teamchin.dto;
 
 public class TeamUser {
+	
 	private int teamUserId;
 	private int userId;
 	private int teamId;
-	private int rank;
+	private int grade;
 	private String nickname;
 	private String profileImage;
 	private String statusMessage;
+	
 	public int getTeamUserId() {
 		return teamUserId;
 	}
@@ -26,11 +28,11 @@ public class TeamUser {
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
 	}
-	public int getRank() {
-		return rank;
+	public int getGrade() {
+		return grade;
 	}
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	public String getNickname() {
 		return nickname;
@@ -52,7 +54,7 @@ public class TeamUser {
 	}
 	@Override
 	public String toString() {
-		return "TeamUser [teamUserId=" + teamUserId + ", userId=" + userId + ", teamId=" + teamId + ", rank=" + rank
+		return "TeamUser [teamUserId=" + teamUserId + ", userId=" + userId + ", teamId=" + teamId + ", rank=" + grade
 				+ ", nickname=" + nickname + ", profileImage=" + profileImage + ", statusMessage=" + statusMessage
 				+ "]";
 	}

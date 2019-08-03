@@ -6,3 +6,6 @@ ApplicationConfig.java
 
 DBConfig.java
 
+FrontEnd/node_modules
+
+FrontEnd/teamChin-vue/node_modules
