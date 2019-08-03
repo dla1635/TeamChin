@@ -92,5 +92,23 @@ public class BoardDao {
 		return insertActionNotice.executeAndReturnKey(params).intValue();
 	}
 	
+	public int updateBoardItem(Board board) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("title", board.getTitle());
+		params.put("contents", board.getContents());
+		params.put("image", board.getImage());
+		params.put("boardId", board.getBoardId());
+		
+		return jdbc.update(UPDATE_BOARD_ITEM, params);
+	}
+	
+	public int updateNoticeItem(Board notice) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("contents", notice.getContents());
+		params.put("image", notice.getImage());
+		params.put("noticeId", notice.getBoardId());
+		
+		return jdbc.update(UPDATE_NOTICE_ITEM, params);
+	}
 }
 

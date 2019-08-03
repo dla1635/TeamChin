@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ej.teamchin.dao.BoardDao;
 import com.ej.teamchin.dto.Board;
+import com.ej.teamchin.dto.TeamUser;
 import com.ej.teamchin.service.BoardService;
 
 @Service
@@ -46,6 +47,39 @@ public class BoardServiceImple implements BoardService{
 		int noticeId = boardDao.insertNotice(notice);
 		notice.setBoardId(noticeId);
 		return notice;
+	}
+
+	@Override
+	@Transactional
+	public List<Board> getNoticeList(Integer teamId) {
+		List<Board> list = boardDao.selectNoticeList(teamId);
+		return list;
+	}
+
+	@Override
+	@Transactional
+	public Board getNoticeItem(Integer noticeId) {
+		Board item = boardDao.selectNoticeItem(noticeId);
+		return item;
+	}
+
+	@Override
+	@Transactional
+	public List<TeamUser> getNoticeUserList(Integer noticeId) {
+		List<TeamUser> list = boardDao.selectNoticeUserList(noticeId);
+		return list;
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public int updateBoardItem(Board board) {
+		return boardDao.updateBoardItem(board);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public int updateNoticeItem(Board notice) {
+		return boardDao.updateNoticeItem(notice);
 	}
 	
 }
