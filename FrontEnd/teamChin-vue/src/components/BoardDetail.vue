@@ -17,12 +17,18 @@
         </v-layout>
       </v-layout>
 
-      <v-layout>
-        <v-flex class="content_container">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum qui temporibus voluptate optio maiores tempore aliquam, delectus ea omnis exercitationem dolor magnam! Fuga voluptas ipsa assumenda illo amet? Enim, pariatur.</v-flex>
+      <v-layout column class="content_container">
+        <v-flex
+          class="text_container"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum qui temporibus voluptate optio maiores tempore aliquam, delectus ea omnis exercitationem dolor magnam! Fuga voluptas ipsa assumenda illo amet? Enim, pariatur.</v-flex>
+        <img src="../assets/cute.png" class="content_img" />
       </v-layout>
     </v-layout>
 
     <v-divider></v-divider>
+    <v-layout justify-end>
+      <v-btn class="ma-2 confirm_btn" tile color="#9AD9D8">확인</v-btn>
+    </v-layout>
   </v-container>
 </template>
 
@@ -67,17 +73,21 @@ export default {
   width: 15%;
 }
 
-.content_container {
+.text_container {
   line-height: 1.6;
-  max-height: 4.8em;
   margin: 15px 10px;
   text-align: justify;
+}
 
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.content_img {
+  width: 100%;
+}
+
+.content_container {
+  margin-bottom: 10px;
+}
+
+.confirm_btn {
+  color: #FFFFFF;
 }
 </style>

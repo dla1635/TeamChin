@@ -1,7 +1,6 @@
 <template>
   <v-container fluid>
     <v-layout column>
-
       <v-flex offset-xs-2 offset-sm-2 class="main_title">BOARD</v-flex>
 
       <v-flex xs12 sm12 md12 lg12>
@@ -15,6 +14,11 @@
       </v-flex>
       <v-divider class="mx-12 tab_border"></v-divider>
     </v-layout>
+
+    <v-btn absolute bottom right fab color="#9AD9D8">
+      <v-icon>add</v-icon>
+    </v-btn>
+
   </v-container>
 </template>
 
