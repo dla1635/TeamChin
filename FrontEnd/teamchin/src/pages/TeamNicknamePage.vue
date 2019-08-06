@@ -20,6 +20,7 @@
 <script>
 
 import {Action} from '@/store/actions'
+import {store} from '@/store/store'
 
 export default {
   name: "Team",
@@ -40,10 +41,10 @@ export default {
                 name: this.teamName,
                 nickname: this.teamNickname
             }
-            
-            this.$store.dispatch('createTeam', payload);
 
-            this.$router.push({ path: 'teamNickname', query: { teamName: this.teamName }})
+            store.dispatch('createTeam', payload);
+            // router-link와 같은 기능
+            this.$router.push({ path: ''})
           }
       }
   }

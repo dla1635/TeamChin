@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import com.ej.teamchin.dto.Team;
 import com.ej.teamchin.dto.TeamUser;
 import com.ej.teamchin.service.TeamService;
 
-
+@CrossOrigin(origins = "http://localhost:8084")
 @RestController
 public class TeamController {
 
@@ -23,7 +24,7 @@ public class TeamController {
 	TeamService teamService;
 	
 	@PostMapping(path="/insertTeam")
-	public Map<String, Integer> insertTeam(@ModelAttribute Team team, @ModelAttribute TeamUser teamUser) {
+	public Map<String, Integer> insertTeam(@ModelAttribute("t") Team team, @ModelAttribute("tu") TeamUser teamUser) {
 		
 		System.out.println("insertTeam-----------");
 		System.out.println("team : "+team);
@@ -36,7 +37,7 @@ public class TeamController {
 		return map;
 	}
 	
-	@GetMapping(path="/selectTeamList")
+	@PostMapping(path="/selectTeamList")
 	public Map<String, List<Team>> selectTeamList(@RequestParam(name="U_id", required=true) int U_id) {
 		
 		System.out.println("selectTeamList");
@@ -46,7 +47,7 @@ public class TeamController {
 		
 		Map<String, List<Team>> map = new HashMap<>();
 		map.put("teamList", result);
-		
+		System.out.println(result);
 		return map;
 	}
 	

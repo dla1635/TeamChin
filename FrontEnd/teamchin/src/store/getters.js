@@ -1,4 +1,13 @@
+
 export const Getters = {
+
+    userInfo(state, getters) {
+      return state.user
+    },
+    teamList(state, getters) {
+      return state.teamList;
+    },
+// =====================================
     allFollowings (state, getters) {
       return state.user_followings
     },
