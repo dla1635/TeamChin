@@ -9,8 +9,11 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    user: 1,
-    teamList: {},
+    userId: 1,
+    teamList: [],
+    teamId : null,
+    teamUserId: null,
+    teamInfo: [],
   },
   mutations: Object.assign({}, Mutations),
   getters: Object.assign({}, mypageGetters, tokenGetters, navGetters, mypageInfoGetters, Getters, FeedCommentGetters, AlarmGetters, FollowerGetters),

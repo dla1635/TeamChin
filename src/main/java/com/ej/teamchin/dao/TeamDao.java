@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import com.ej.teamchin.dto.Team;
+import com.ej.teamchin.dto.TeamInfo;
 import com.ej.teamchin.dto.TeamUser;
 
 
@@ -22,7 +23,9 @@ import com.ej.teamchin.dto.TeamUser;
 public class TeamDao {
 	
 	private NamedParameterJdbcTemplate jdbc;
-	private RowMapper<Team> rowMapper = BeanPropertyRowMapper.newInstance(Team.class);
+	private RowMapper<Team> rowMapperTeam = BeanPropertyRowMapper.newInstance(Team.class);
+	private RowMapper<TeamInfo> rowMapperTeamInfo = BeanPropertyRowMapper.newInstance(TeamInfo.class);
+
 	private SimpleJdbcInsert insertActionTeam;
 	private SimpleJdbcInsert insertActionTeamUser;
 	
@@ -50,8 +53,8 @@ public class TeamDao {
 		
 		System.out.println(teamUser);
 		Map<String, Object> params = new HashMap<>();
-		params.put("U_id", teamUser.getUserId());
-		params.put("T_id", teamUser.getTeamId());
+		params.put("U_id", teamUser.getU_id());
+		params.put("T_id", teamUser.getT_id());
 		params.put("grade", teamUser.getGrade());
 		params.put("nickname", teamUser.getNickname());
 		return insertActionTeamUser.executeAndReturnKey(params).intValue();
@@ -62,15 +65,15 @@ public class TeamDao {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("U_id", userId);
 		System.out.println(userId);
-		return jdbc.query(SELECT_TEAM_LIST, params, rowMapper);
+		return jdbc.query(SELECT_TEAM_LIST, params, rowMapperTeam);
 		
 	}
 	
-	public Team selectTeam (int teamId) {
+	public List<TeamInfo> selectTeam (int teamId) {
 		
 		Map<String, Integer> params = new HashMap<>();
 		params.put("T_id", teamId);
-		return jdbc.queryForObject(SELECT_TEAM, params, rowMapper);
+		return jdbc.query(SELECT_TEAM, params, rowMapperTeamInfo);
 		
 	}
 	

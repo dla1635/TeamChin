@@ -2,10 +2,17 @@
 export const Getters = {
 
     userInfo(state, getters) {
-      return state.user
+      console.log("asdasd")
+      return state.userId
+    },
+    teamId(state, getters) {
+      return state.teamId
     },
     teamList(state, getters) {
       return state.teamList;
+    },
+    teamInfo(state, getters) {
+      return state.teamInfo;
     },
 // =====================================
     allFollowings (state, getters) {
@@ -18,11 +25,11 @@ export const Getters = {
       return state.feeds
     }
   }
-  export const mypageGetters = {
-    userInfo (state, getters) {
-      return state.mypage
-    }
-  }
+  // export const mypageGetters = {
+  //   userInfo (state, getters) {
+  //     return state.mypage
+  //   }
+  // }
   
   export const tokenGetters = {
     tokenInfo (state, getters) {

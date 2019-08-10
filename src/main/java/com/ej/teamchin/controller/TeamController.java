@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ej.teamchin.dto.Team;
+import com.ej.teamchin.dto.TeamInfo;
 import com.ej.teamchin.dto.TeamUser;
 import com.ej.teamchin.service.TeamService;
 
-@CrossOrigin(origins = "http://localhost:8084")
+@CrossOrigin(origins = "*")
 @RestController
 public class TeamController {
 
@@ -24,15 +25,16 @@ public class TeamController {
 	TeamService teamService;
 	
 	@PostMapping(path="/insertTeam")
-	public Map<String, Integer> insertTeam(@ModelAttribute("t") Team team, @ModelAttribute("tu") TeamUser teamUser) {
+	public Map<String, Integer> insertTeam(@ModelAttribute Team team, @ModelAttribute TeamUser teamUser) {
 		
 		System.out.println("insertTeam-----------");
 		System.out.println("team : "+team);
 		System.out.println("teamUser : "+teamUser);
-		int result = teamService.insertTeam(team, teamUser);
+		int[] result = teamService.insertTeam(team, teamUser);
 		
 		Map<String, Integer> map = new HashMap<>();
-		map.put("insertResult", result);
+		map.put("teamId", result[0]);
+		map.put("teamUserId", result[1]);
 		
 		return map;
 	}
@@ -51,17 +53,18 @@ public class TeamController {
 		return map;
 	}
 	
-	@GetMapping(path="/selectTeam")
-	public Map<String, Team> selectTeam(@RequestParam(name="T_id", required=true) int T_id) {
+	@PostMapping(path="/selectTeam")
+	public Map<String, List<TeamInfo>> selectTeam(@RequestParam(name="T_id", required=true) int T_id) {
 		
 		System.out.println("selectTeam");
 		System.out.println("T_id : "+T_id);
 		
-		Team result = teamService.selectTeam(T_id);
+		List<TeamInfo> result = teamService.selectTeam(T_id);
 		
-		Map<String, Team> map = new HashMap<>();
-		map.put("team", result);
+		Map<String, List<TeamInfo>> map = new HashMap<>();
 		
+		map.put("teamInfo", result);
+		System.out.println(result);
 		return map;
 	}
 	

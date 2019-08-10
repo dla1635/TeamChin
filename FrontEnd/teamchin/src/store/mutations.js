@@ -9,10 +9,18 @@ export const Mutations = {
     signUpSuccess (state, payload) {
       console.log('SignUpFinish')
     },
-    getTeamListSuccess(state, payload) {
-      state.teamList = payload.teamList;
-      console.log(store.getters.teamList);
+    changeTeam(state, payload) {
+      console.log(payload)
+      state.teamId = payload.teamId
+      state.teamUserId = payload.teamUserId
     },
+    setTeamInfo(state, payload) {
+      state.teamInfo = payload.teamInfo;
+    },
+    setTeamList(state, payload) {
+      state.teamList = payload.teamList;
+    },
+   
     // 1. actions : 비동기 처리
     // 2. mutations : 데이터를 변경 함
     // 변경 뒤엔 state(전역 데이터)가 바뀌어 있겠지?

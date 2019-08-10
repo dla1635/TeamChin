@@ -1,20 +1,17 @@
 package com.ej.teamchin.service.impl;
 
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ej.teamchin.config.DBConfig;
 import com.ej.teamchin.dao.TeamDao;
 import com.ej.teamchin.dto.Team;
+import com.ej.teamchin.dto.TeamInfo;
 import com.ej.teamchin.dto.TeamUser;
 import com.ej.teamchin.service.TeamService;
-import com.mysql.jdbc.PreparedStatement;
 
 @Service
 public class TeamServiceImpl implements TeamService{
@@ -24,12 +21,20 @@ public class TeamServiceImpl implements TeamService{
 	
 	@Transactional
 	@Override
-	public int insertTeam(Team team, TeamUser teamUser) {
+	public int[] insertTeam(Team team, TeamUser teamUser) {
 		
 		// 팀,팀유저 생성한다.
-		teamUser.setTeamId(teamDao.insertTeam(team));
+		int teamId = teamDao.insertTeam(team);
+		teamUser.setT_id(teamId);
 		teamUser.setGrade(1); // 방장으로 설정
-		return teamDao.insertTeamUser(teamUser);
+		int teamUserId = teamDao.insertTeamUser(teamUser);
+		
+		int[] result = new int[2];
+		result[0] = teamId;
+		result[1] = teamUserId;
+		
+		return result;
+		
 	}
 
 	@Override
@@ -38,7 +43,7 @@ public class TeamServiceImpl implements TeamService{
 	}
 
 	@Override
-	public Team selectTeam(int teamId) {
+	public List<TeamInfo> selectTeam(int teamId) {
 		return teamDao.selectTeam(teamId);
 	}
 

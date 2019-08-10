@@ -34,17 +34,20 @@ export default {
       this.teamName = this.$route.query.teamName
   },
   methods: {
-      createTeam () {
+       async createTeam () {
           if(this.teamName !== "") {
 
             var payload = {
                 name: this.teamName,
-                nickname: this.teamNickname
+                nickname: this.teamNickname,
+                U_id: store.getters.userInfo
             }
 
-            store.dispatch('createTeam', payload);
-            // router-link와 같은 기능
-            this.$router.push({ path: ''})
+            // 팀 생성
+            await store.dispatch('createTeam', payload);
+
+            // 생성된 homePage로 이동
+            this.$router.push({ path: '/'+store.getters.userInfo+'/'+store.getters.teamId+'/home'})
           }
       }
   }

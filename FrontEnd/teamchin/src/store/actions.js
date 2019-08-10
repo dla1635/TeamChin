@@ -3,35 +3,46 @@ import router from '../router/router'
 
 const BASE_URL = "http://localhost:8080/TeamChin"
 export const Actions = {
-    createTeam({commit}, payload) {
+     async createTeam({commit}, payload) {
       let form = new FormData() 
       form.append('nickname', payload.nickname) 
       form.append('name',payload.name)
-      form.append('userId',1)
+      form.append('U_id',payload.U_id)
 
-      axios.post( BASE_URL+'/insertTeam', form).then(response => {
-          // 회원가입 성공 실패 분기 하긔!
-          if (response.status === 201) {
-
-              commit('createTeamSuccess')
-              location.reload('/')
-              console.log('서버연결?!?!?!')
+      await axios.post( BASE_URL+'/insertTeam', form).then(response => {
+          if (response.status === 200) {
+            commit('changeTeam', response.data)
+            console.log('create Team Success')
           }
       })
     },
     async getTeamList({commit}, payload) {
+      
       let form = new FormData() 
       form.append('U_id', payload.userId);
 
       await axios.post( BASE_URL+'/selectTeamList', form).then(response => {
 
         if (response.status === 200) {
-            console.log("통신 성공!")
-            commit('getTeamListSuccess', response.data)
-
+          commit('setTeamList', response.data)
           }
       })
     },
+    async getTeamMemberList({commit}, payload) {
+      
+      let form = new FormData() 
+      form.append('T_id', payload.teamId);
+      console.log(payload)
+      await axios.post( BASE_URL+'/selectTeam', form).then(response => {
+
+        if (response.status === 200) {
+          commit('setTeamInfo', response.data)
+          console.log("get Team List Success")
+          }
+      })
+    },
+
+///////////////////////////////////////////////////////////
   signUp ({ commit }, payload) {
     axios.post('https://weatherook.cf/auth', payload).then(response => {
       // 회원가입 성공 실패 분기 하긔!

@@ -17,7 +17,6 @@
   </v-container>   
 </template>
 
-
 <script>
 export default {
   name: "Team",
